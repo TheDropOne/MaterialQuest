@@ -1,5 +1,7 @@
 package by.thedrop.materialquest.Templates;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import by.thedrop.materialquest.Constants.Constants;
+import by.thedrop.materialquest.Activities.LevelHolderActivity;
+import by.thedrop.materialquest.Activities.MainActivity;
 import by.thedrop.materialquest.R;
 
 /**
@@ -31,26 +34,32 @@ public class LevelsRVAdapter extends RecyclerView.Adapter<LevelsRVAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(LevelsRVAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final LevelsRVAdapter.MyViewHolder holder, final int position) {
         final String string = String.valueOf(levels.get(position).getNumber());
 
         TextView level = holder.mLevel;
         CardView levelCard = holder.mLevelCard;
-        View view = holder.mItemView;
+        final View view = holder.mItemView;
 
         level.setText(string);
         int textSize = 24;
 
         level.setTextSize(textSize);
-        if (position > Constants.availableLevels.size()) {
+        if (position > MainActivity.maxAvailableLevel - 1) {
             levelCard.setAlpha(0.4f);//Color.parseColor("#ededed"));
             levelCard.setEnabled(false);
+        }
+        if (position == MainActivity.currentLevel - 1) {
+            level.setBackgroundColor(Color.parseColor("#FFFF5656"));
         }
 
         holder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
+                Intent intent = new Intent(view.getContext(), LevelHolderActivity.class);
+                MainActivity.currentLevel = position + 1;
+                view.getContext().startActivity(intent);
+                /*s
                 start activity with chosen level
                  */
             }

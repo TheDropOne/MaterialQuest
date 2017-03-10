@@ -2,6 +2,8 @@ package by.thedrop.materialquest.Constants;
 
 import java.util.ArrayList;
 
+import by.thedrop.materialquest.Levels.Level_1;
+import by.thedrop.materialquest.Levels.Level_2;
 import by.thedrop.materialquest.Templates.Level;
 
 /**
@@ -10,14 +12,17 @@ import by.thedrop.materialquest.Templates.Level;
 
 public class Constants {
     public static ArrayList<Level> levels = new ArrayList<>();
-    public static ArrayList<Level> availableLevels = new ArrayList<>();
 
-    public static void initLevels(){
-        for (int i = 1; i < 31; i++) {
-            levels.add(new Level(i));
-        }
-        for (int i = 1; i < 8; i++) {
-            availableLevels.add(new Level(i));
-        }
+    public static void initLevels() {
+        levels.add(new Level(1, new Level_1()));
+        levels.add(new Level(2, new Level_2()));
+        //levels.add(new Level(3, new Level_3()));
+        //levels.add(new Level(4, new Level_4()));
+        //levels.add(new Level(5, new Level_5()));
+        //levels.add(new Level(6, new Level_6()));
+        //levels.add(new Level(7, new Level_7()));
+        //levels.add(new Level(8, new Level_8()));
+        //levels.add(new Level(9, new Level_9()));
+        //levels.add(new Level(10, new Level_10()));
     }
 }

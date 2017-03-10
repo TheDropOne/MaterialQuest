@@ -1,5 +1,6 @@
 package by.thedrop.materialquest.Activities;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,5 +50,14 @@ public class LevelsActivity extends AppCompatActivity {
                 Toast.makeText(LevelsActivity.this, R.string.error_message, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences.Editor editor = MainActivity.mSharedPreferences.edit();
+        editor.putInt(MainActivity.CURRENT_LEVEL, MainActivity.currentLevel);
+        editor.putInt(MainActivity.MAX_AVAILABLE_LEVEL, MainActivity.maxAvailableLevel);
+        editor.apply();
     }
 }
